@@ -5,7 +5,9 @@
 
 .header-text{
     font-family: cursive;
-    padding: 30px;
+    padding-top: 20px;
+    padding-left: 100px;
+    color: #0061ab;
 }
 
 .info-block{
