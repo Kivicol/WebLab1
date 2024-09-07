@@ -1,66 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>ЛР1</title>
-        <link href="stylesheets.css" rel="stylesheet">
-    </head>
-    <body>
-        <main class="layout">
-            <header class="header-text">
-                <h1 class="info">Дмитришен К.Р., группа Р3224, вариант 408547</h1>
-            </header>
+<head>
+    <meta charset="UTF-8">
+    <title>ЛР1</title>
+    <link href="stylesheets.css" rel="stylesheet">
+</head>
 
-            <figure class="canvas">
-                <img src="images/areas.jpg" alt="areas" id="areas">
-            </figure>
+<body>
 
-            <div id="message"></div>
+<header class="header-text">
+    <h1 class="info">Дмитришен К.Р., группа Р3224, вариант 408547</h1>
+</header>
 
-            <div class="info-block">
-                <label class="label">Координата X:</label>
-                <div class="coord-header">
-                    <label class="coord-picker"><input type="radio" name="x" value="-2" required>-2</label>
-                    <label class="coord-picker"><input type="radio" name="x" value="-1.5">-1.5</label>
-                    <label class="coord-picker"><input type="radio" name="x" value="-1">-1</label>
-                    <label class="coord-picker"><input type="radio" name="x" value="-0.5">-0.5</label>
-                    <label class="coord-picker"><input type="radio" name="x" value="0">0</label>
-                    <label class="coord-picker"><input type="radio" name="x" value="0.5">0.5</label>
-                    <label class="coord-picker"><input type="radio" name="x" value="1">1</label>
-                    <label class="coord-picker"><input type="radio" name="x" value="1.5">1.5</label>
-                    <label class="coord-picker"><input type="radio" name="x" value="2">2</label>
-                </div>
+<main class="layout">
+    <figure class="canvas">
+        <img src="images/areas.jpg" alt="areas" id="areas">
+    </figure>
 
-                <label class="label">Координата Y:</label>
-                <div class="coord-header">
-                    <label for="y"></label><input class="input-box" type="text" name="y" id="y" placeholder="{-5...5}" maxlength="10" required>
-                </div>
+    <div id="message"></div>
 
-                <label class="label">Радиус R:</label>
-                <div class="coord-header">
-                    <label for="r"></label><input class="input-box" type="text" name="y" id="r" placeholder="{1...4}" maxlength="10" required>
-                </div>
+    <div class="info-block">
+        <label class="label">Координата X:</label>
+        <div class="coord-header">
+            <label class="coord-picker"><input type="radio" name="x" value="-2" required>-2</label>
+            <label class="coord-picker"><input type="radio" name="x" value="-1.5">-1.5</label>
+            <label class="coord-picker"><input type="radio" name="x" value="-1">-1</label>
+            <label class="coord-picker"><input type="radio" name="x" value="-0.5">-0.5</label>
+            <label class="coord-picker"><input type="radio" name="x" value="0">0</label>
+            <label class="coord-picker"><input type="radio" name="x" value="0.5">0.5</label>
+            <label class="coord-picker"><input type="radio" name="x" value="1">1</label>
+            <label class="coord-picker"><input type="radio" name="x" value="1.5">1.5</label>
+            <label class="coord-picker"><input type="radio" name="x" value="2">2</label>
+        </div>
 
-                <table>
-                    <tr>
-                        <th><input type="submit" class="table-buttons" value="Отправить данные"></th>
-                        <th><input type="reset" class="table-buttons" onclick="resetForm()" value="Сбросить данные"></th>
-                    </tr>
-                </table>
-                <div class="table-block">
-                    <table id="table" cellspacing="6" cellpadding="15">
-                        <caption><b>Результаты</b></caption>
-                        <tr>
-                            <th>Координата X</th>
-                            <th>Координата Y</th>
-                            <th>Радиус R</th>
-                            <th>Факт попадания в область</th>
-                            <th>Текущее время</th>
-                            <th>Время выполнения скрипта (ms)</th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </main>
-    </body>
+        <label class="label">Координата Y:</label>
+        <div class="coord-header">
+            <label for="y"></label><input class="input-box" type="text" name="y" id="y" placeholder="{-5...5}"
+                                          maxlength="10" required>
+        </div>
+
+        <label class="label">Радиус R:</label>
+        <div class="coord-header">
+            <label for="r"></label><input class="input-box" type="text" name="y" id="r" placeholder="{1...4}"
+                                          maxlength="10" required>
+        </div>
+
+        <table>
+            <tr>
+                <th><input type="submit" class="table-buttons" value="Отправить данные"></th>
+                <th><input type="reset" class="table-buttons" onclick="resetForm()" value="Сбросить данные"></th>
+            </tr>
+        </table>
+        <div class="table-block">
+            <table id="table" cellspacing="6" cellpadding="15">
+                <caption class="label"><b>Результаты</b></caption>
+                <tr>
+                    <th>Координата X</th>
+                    <th>Координата Y</th>
+                    <th>Радиус R</th>
+                    <th>Факт попадания в область</th>
+                    <th>Текущее время</th>
+                    <th>Время выполнения скрипта (ms)</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</main>
+</body>
 </html>

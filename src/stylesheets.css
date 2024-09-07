@@ -5,16 +5,17 @@
 
 .header-text{
     font-family: cursive;
+    padding: 30px;
 }
 
 .info-block{
-    padding-top: 200px;
+    padding-top: 50px;
 }
 
 .canvas {
     position: absolute;
     margin-left: 1000px;
-    margin-top: 300px;
+    margin-top: 200px;
     img{
         width: 150%;
         border-radius: 30px;
@@ -47,6 +48,25 @@
 }
 
 .table-buttons{
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    flex: auto;
+    background-color: #f0f6ff;
+    border-color: #0091ff;
+    border-radius: 20px;
+    margin-left: 50px;
+    margin-bottom: 100px;
+    padding: 10px;
+    transition-duration: 0.3s;
+}
+.table-buttons:hover{
+    color: white;
+    background-color: #0091ff;
+    border-color: #0091ff;
+}
+
+.table-text{
     font-size: 20px;
     font-weight: bold;
     color: black;
@@ -56,11 +76,6 @@
     margin: 10px;
     padding: 5px;
     transition-duration: 0.4s;
-}
-.table-buttons:hover{
-    color: white;
-    background-color: #0091ff;
-    border-color: #0091ff;
 }
 
 .label {
