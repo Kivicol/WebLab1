@@ -4,6 +4,8 @@ function validatePoint() {
     let r = parseFloat(document.getElementById("r").value);
     let message = document.getElementById("message");
 
+    console.log("Приняты данные:", x, y, r);
+
     if (isNaN(x) || isNaN(y) || isNaN(r)) {
         message.textContent = "Пожалуйста, введите корректные значения!";
         return;

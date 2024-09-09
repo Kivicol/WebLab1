@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-.header-text{
+header{
     font-family: cursive;
     padding-top: 20px;
     padding-left: 100px;
@@ -50,7 +50,7 @@
     border-radius: 22px;
 }
 
-.layout{
+#layout{
     background-color: #f0f6ff;
     margin: 30px;
     padding: 60px;
