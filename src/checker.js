@@ -24,33 +24,51 @@ function validatePoint() {
         return;
     }
 
-    let inRectangle = (x >= -r && x <= 0 && y >= -r / 2 && y <= 0);
+    xhr.open("POST", "https://helios.cs.ifmo.ru:24738/fcgi-bin/WebLab1.jar", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    let inTriangle = (x >= 0 && y >= 0 && y <= (-x + r));
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var jsonResponse = JSON.parse(xhr.responseText);
 
-    let inSector = (x >= 0 && y <= 0 && (x * x + y * y <= (r / 2) ** 2));
 
-    if (inRectangle || inTriangle || inSector) {
-        message.textContent = "Точка попадает в область графика.";
-        console.log("Отображение сообщения:", message.textContent);
-    } else {
-        message.textContent = "Точка не попадает в область графика.";
-        console.log("Отображение сообщения:", message.textContent);
-    }
+            var resultBody = document.getElementById("resultBody");
+            var newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${jsonResponse.x}</td>
+                <td>${jsonResponse.y}</td>
+                <td>${jsonResponse.r}</td>
+                <td>${jsonResponse.result}</td>
+                <td>${jsonResponse.currentTime}</td>
+                <td>${jsonResponse.executionTime}</td>
+            `;
+            resultBody.appendChild(newRow);
 
-    addResultToTable(x, y, r, inRectangle || inTriangle || inSector);
+            drawGraph();
+            drawPoints(x, [y], r);
+        } else if (xhr.readyState == 4) {
+            console.error("Error:", xhr.statusText);
+        }
+    };
+
+
+    xhr.send("x=" + encodeURIComponent(x) + "&y=" + encodeURIComponent(y) + "&r=" + encodeURIComponent(r));
 }
 
-function addResultToTable(x, y, r, isHit) {
-    const table = document.getElementById("table");
-    const newRow = table.insertRow();
-    newRow.insertCell(0).textContent = x;
-    newRow.insertCell(1).textContent = y;
-    newRow.insertCell(2).textContent = r;
-    newRow.insertCell(3).textContent = isHit ? "Попала" : "Не попала";
-    newRow.insertCell(4).textContent = new Date().toLocaleTimeString();
-    newRow.insertCell(5).textContent = performance.now().toFixed(2) + " ms";
-}
+document.getElementById("info-block").addEventListener("submit", function(event) {
+    event.preventDefault();
+    sendData();
+});
+
+
+document.querySelectorAll("input[name='x']").forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        document.querySelectorAll("input[name='x']").forEach(cb => {
+            if (cb !== this) cb.checked = false;
+        });
+    });
+});
+
 
 function resetForm() {
     document.getElementById("message").textContent = "";
