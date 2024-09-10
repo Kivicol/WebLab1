@@ -24,7 +24,8 @@ function validatePoint() {
         return;
     }
 
-    xhr.open("POST", "https://helios.cs.ifmo.ru:24738/fcgi-bin/WebLab1.jar", true);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://helios.cs.ifmo.ru:24738/fcgi-bin/server.jar", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -57,7 +58,7 @@ function validatePoint() {
 
 document.getElementById("info-block").addEventListener("submit", function(event) {
     event.preventDefault();
-    sendData();
+    validatePoint();
 });
 
 

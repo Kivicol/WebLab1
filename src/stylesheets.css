@@ -23,7 +23,12 @@ header{
         border-radius: 30px;
     }
 }
-
+table{
+    margin: auto;
+    background-color: #f0f6ff;
+    border: 5px solid #3399ff;
+    border-radius: 15px;
+}
 .message{
     color: red;
     font-size: 32px;
@@ -89,9 +94,10 @@ header{
 }
 
 .label {
-    font-size: 28px;
+    font-size: 32px;
     font-family: sans-serif;
     text-align: center;
     font-weight: bold;
+    padding-bottom: 30px;
 }
 

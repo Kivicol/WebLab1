@@ -54,7 +54,7 @@
     </figure>
 
 
-    <form class="info-block">
+    <form class="info-block" id="info-block">
         <label class="label">Координата X:</label>
         <div class="coord-header">
             <label class="coord-picker"><input type="radio" name="x" value="-5" required>-5</label>
@@ -80,12 +80,8 @@
                                           maxlength="10" required>
         </div>
 
-        <table>
-            <tr>
-                <th><input type="submit" class="table-buttons" value="Отправить данные"></th>
-                <th><input type="reset" class="table-buttons" value="Сбросить данные"></th>
-            </tr>
-        </table>
+        <button type="submit" class="table-buttons">Отправить данные</button>
+        <input type="reset" class="table-buttons" onclick="resetForm()" value="Сбросить данные">
 
     </form>
 
