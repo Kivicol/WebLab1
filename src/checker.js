@@ -1,12 +1,20 @@
 function validatePoint() {
-    let x = parseFloat(document.querySelector('input[name="x"]:checked').value);
+    let xElement = document.querySelector('input[name="x"]:checked');
     let y = parseFloat(document.getElementById("y").value);
     let r = parseFloat(document.getElementById("r").value);
     let message = document.getElementById("message");
 
+
+    if (!xElement) {
+        message.textContent = "Пожалуйста, выберите координату X.";
+        return;
+    }
+
+    let x = xElement.value;
+
     console.log("Приняты данные:", x, y, r);
 
-    if (isNaN(x) || isNaN(y) || isNaN(r)) {
+    if (isNaN(x) || isNaN(y) ||  isNaN(r)) {
         message.textContent = "Пожалуйста, введите корректные значения!";
         return;
     }
@@ -56,3 +64,5 @@ function resetForm() {
             <th>Время выполнения скрипта (ms)</th>
         </tr>`;
 }
+
+

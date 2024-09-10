@@ -54,7 +54,7 @@
     </figure>
 
 
-    <div class="info-block">
+    <form class="info-block">
         <label class="label">Координата X:</label>
         <div class="coord-header">
             <label class="coord-picker"><input type="radio" name="x" value="-5" required>-5</label>
@@ -79,6 +79,7 @@
             <label for="r"></label><input class="input-box" type="text" name="r" id="r" placeholder="{1...4}"
                                           maxlength="10" required>
         </div>
+    </form>
 
         <table>
             <tr>
@@ -90,7 +91,7 @@
         <div id="message" class="message"></div>
 
         <div class="table-block">
-            <table id="table" cellspacing="6" cellpadding="15">
+            <table id="table" cellspacing="6" cellpadding="15" border="1">
                 <caption class="label"><b>Результаты</b></caption>
                 <tr>
                     <th>Координата X</th>
@@ -100,9 +101,10 @@
                     <th>Текущее время</th>
                     <th>Время выполнения скрипта (ms)</th>
                 </tr>
+                <tbody id="resultBody">
+                </tbody>
             </table>
         </div>
-    </div>
 </main>
 </body>
 </html>
