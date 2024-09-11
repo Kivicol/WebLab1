@@ -79,11 +79,11 @@ public class Server extends FCGIInterface {
     }
 
     private boolean checkPointInsideRegion(double x, double y, double r) {
-        boolean inRectangle = (x >= -r && x <= 0 && y >= -r / 2 && y <= 0);
-        boolean inTriangle = (x >= 0 && y >= 0 && y <= (-x + r));
-        boolean inSector = (x >= 0 && y <= 0 && (x * x + y * y <= Math.pow(r / 2, 2)));
+        boolean inRectangle = (x >= -r && x <= 0) && (y >= 0 && y <= r / 2);
+        boolean inTriangle = (x >= 0 && x <= r / 2) && (y <= 0 && y >= -2 * x);
+        boolean inQuarterCircle = (x >= -r && x <= 0) && (y >= -r && y <= 0) && (x * x + y * y <= r * r);
 
-        return inRectangle || inTriangle || inSector;
+        return inRectangle || inTriangle || inQuarterCircle;
     }
 
     private String createJsonResponse(double x, double y, double r, boolean isInside) {
