@@ -39,7 +39,7 @@ header, .info-block, .coord-header, .coord-picker, .input-box, .label {
 }
 
 .canvas img {
-    width: 150%;
+    width: auto;
     border-radius: 30px;
 }
 

@@ -25,7 +25,7 @@ function validatePoint() {
     }
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://helios.cs.ifmo.ru:24738/httpd-root/fcgi-bin/server.jar", true);
+    xhr.open("POST", "https://helios.cs.ifmo.ru:24882/httpd-root/fcgi-bin/server.jar", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
