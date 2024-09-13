@@ -10,11 +10,11 @@ function validatePoint() {
         return;
     }
 
-    let x = xElement.value;
+    let x = parseFloat(xElement.value);
 
     console.log("Приняты данные:", x, y, r);
 
-    if (isNaN(x) || isNaN(y) ||  isNaN(r)) {
+    if (isNaN(x) || isNaN(y) || isNaN(r)) {
         message.textContent = "Пожалуйста, введите корректные значения!";
         return;
     }
@@ -24,46 +24,85 @@ function validatePoint() {
         return;
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://helios.cs.ifmo.ru:24882/httpd-root/fcgi-bin/server.jar", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    fetch(`http://localhost:24882/fcgi-bin/server.jar?x=${x}&y=${y}&r=${r}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(result => {
+            const resultBody = document.getElementById('resultBody');
+            const newRow = document.createElement('tr');
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var jsonResponse = JSON.parse(xhr.responseText);
-
-
-            var resultBody = document.getElementById("resultBody");
-            var newRow = document.createElement("tr");
             newRow.innerHTML = `
-                <td>${jsonResponse.x}</td>
-                <td>${jsonResponse.y}</td>
-                <td>${jsonResponse.r}</td>
-                <td>${jsonResponse.result}</td>
-                <td>${jsonResponse.currentTime}</td>
-                <td>${jsonResponse.executionTime}</td>
-            `;
+            <td>${x}</td>
+            <td>${y}</td>
+            <td>${r}</td>
+            <td>${result.result !== undefined ? (result.result ? 'true' : 'false') : 'undefined'}</td>
+            <td>${result.currentTime !== undefined ? result.currentTime : 'undefined'}</td>
+            <td>${result.executionTime !== undefined ? result.executionTime : 'undefined'}</td>
+        `;
+
             resultBody.appendChild(newRow);
+        })
+        .catch(error => console.error('Error:', error));
+}
+function appendData(item, x ,y ,r){
+    let body = document.querySelector("table tbody");
+    let thead = document.querySelector("table thead");
+    let RequestStatus = document.querySelector("status")
+    RequestStatus.innerHTML = '';
 
-            drawGraph();
-            drawPoints(x, [y], r);
-        } else if (xhr.readyState == 4) {
-            console.error("Error:", xhr.statusText);
-        }
-    };
+    const row = document.createElement("tr");
 
+    const Xcell = document.createElement("td");
+    Xcell.textContent = x;
+    row.appendChild(Xcell);
 
-    xhr.send("x=" + encodeURIComponent(x) + "&y=" + encodeURIComponent(y) + "&r=" + encodeURIComponent(r));
+    const Ycell = document.createElement("td");
+    Ycell.textContent = y;
+    row.appendChild(Ycell);
+
+    const Rcell = document.createElement("td");
+    Rcell.textContent = r;
+    row.appendChild(Rcell);
+
+    const status = document.createElement("td");
+
+    item.status === true ? status.textContent = "Попала" : status.textContent = "Не попала";
+    row.appendChild(status);
+
+    const currentTime = document.createElement("td");
+    currentTime.textContent = new Date().toLocaleDateString() + ":" + new Date().toLocaleTimeString();
+    row.appendChild(currentTime);
+
+    const executionTime = document.createElement("td");
+    executionTime.textContent = item.time;
+    row.appendChild(executionTime);
+
+    body.prepend(row);
+    thead.classList.add('visible');
+
+    let statusText = document.createElement("h2");
+    if(item.status){
+        statusText.textContent = "Попадание";
+        RequestStatus.style.color = "green";
+    }
+    else{
+        statusText.textContent = "Промах"
+        RequestStatus.style.color = "red";
+    }
+    RequestStatus.classList.add('visible');
+    RequestStatus.appendChild(statusText);
+
 }
 
-document.getElementById("info-block").addEventListener("submit", function(event) {
+document.getElementById("info-block").addEventListener("submit", function (event) {
     event.preventDefault();
     validatePoint();
 });
 
 
 document.querySelectorAll("input[name='x']").forEach(checkbox => {
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function () {
         document.querySelectorAll("input[name='x']").forEach(cb => {
             if (cb !== this) cb.checked = false;
         });
@@ -72,8 +111,8 @@ document.querySelectorAll("input[name='x']").forEach(checkbox => {
 
 
 function resetForm() {
-    document.getElementById("message").textContent = "";
-    document.getElementById("table").innerHTML = `
+    document.getElementById("status").textContent = "";
+    document.getElementById("table-text").innerHTML = `
         <tr>
             <th>Координата X</th>
             <th>Координата Y</th>
