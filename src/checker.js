@@ -24,7 +24,7 @@ function validatePoint() {
         return;
     }
 
-    fetch(`http://localhost:24882/fcgi-bin/server.jar?x=${x}&y=${y}&r=${r}`, {
+    fetch(`http://localhost:8080/fcgi-bin/server.jar?x=${x}&y=${y}&r=${r}`, {
         method: 'GET'
     })
         .then(response => response.json())
