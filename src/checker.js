@@ -32,7 +32,7 @@ function validatePoint() {
             const resultBody = document.getElementById('resultBody');
             const newRow = document.createElement('tr');
 
-            newRow.innerHTML = `
+            newRow.innerHTML = ` 
             <td>${x}</td>
             <td>${y}</td>
             <td>${r}</td>

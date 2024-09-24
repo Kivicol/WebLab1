@@ -1,6 +1,7 @@
 
 import com.fastcgi.FCGIInterface;
 import java.nio.charset.StandardCharsets;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -65,7 +66,7 @@ public class Main {
 
                     String jsonResponse = String.format(
                             "{\"result\": %b, \"currentTime\": \"%s\", \"executionTime\": \"%s\"}",
-                            isInside, java.time.LocalDateTime.now(), executionTime
+                            isInside, java.time.LocalTime.now().toString().substring(0, 8), executionTime
                     );
                     sendJson(jsonResponse);
                 } else {
